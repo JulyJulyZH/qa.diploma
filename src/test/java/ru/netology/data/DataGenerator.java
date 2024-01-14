@@ -4,30 +4,27 @@ import com.github.javafaker.CreditCardType;
 import com.github.javafaker.Faker;
 import lombok.Value;
 
-import java.util.Locale;
-import java.util.Random;
-
 import java.time.LocalDate;
+import java.util.Locale;
 
 public final class DataGenerator {
     private static Faker faker = new Faker(new Locale("en"));
-    private static Random random = new Random();
-
     private static String approvedCard = "4444 4444 4444 4441";
     private static String declinedCard = "4444 4444 4444 4442";
 
     private static int thisMonthInt = LocalDate.now().getMonth().getValue();
     private static String lastMonth = Integer.toString(thisMonthInt - 1);
-
     private static final int MONTHS_COUNT = 12;
     private static int monthInt = rnd(thisMonthInt, MONTHS_COUNT);
     private static String month = Integer.toString(monthInt);
     private static final int MIN_TWO_NUM = 10;
+
     static {
         if (monthInt < MIN_TWO_NUM) {
             month = "0" + month;
         }
     }
+
     private static final int MAX_TWO_NUM = 99;
     private static String wrongMonth = Integer.toString(rnd(MONTHS_COUNT, MAX_TWO_NUM));
 
@@ -35,8 +32,10 @@ public final class DataGenerator {
     private static final int MAX_THREE_NUM = 999;
     private static String cvc = Integer.toString(rnd(MIN_THREE_NUM, MAX_THREE_NUM));
     private static final int HUNDRED = 100;
-        private static int thisYear = (LocalDate.now().getYear()) % HUNDRED; // получаем последние цифры текущего года
+    private static int thisYear = (LocalDate.now().getYear()) % HUNDRED; // получаем последние цифры текущего года
     private static String thisYearStr = Integer.toString(thisYear);
+
+    private static final String lastYearStr = Integer.toString(thisYear - 1);
     private static final int VALIDITY_PERIOD = 5;
     private static String year = Integer.toString(rnd(thisYear, thisYear + VALIDITY_PERIOD));
     private static String wrongYear = Integer.toString(rnd(0, thisYear - 1));
@@ -82,6 +81,12 @@ public final class DataGenerator {
     }
 
     public static CardInformation getCardInformationWithLastMonth() {
+
+        if (thisMonthInt - 1 == 0) {
+            lastMonth = Integer.toString(12);
+            thisYearStr = Integer.toString(thisYear - 1);
+        } // ложноположительно проходит, т.к. истекло по году, нужен более сложный тест с подменой текущей даты
+
         return new CardInformation(approvedCard, lastMonth, thisYearStr, faker.name().fullName(), cvc);
     }
 
