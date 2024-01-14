@@ -14,6 +14,6 @@
 - Allure
 
 В ходе тестирования спроектировано 38 тест-кейсов.
-При прогоне тестов 17 из них не прошли, заведены соответствующие ![Issues](https://github.com/JulyJulyZH/qa.diploma/issues).
+При прогоне тестов 17 из них не прошли, заведены соответствующие [Issues](https://github.com/JulyJulyZH/qa.diploma/issues).
 ![image](https://github.com/JulyJulyZH/qa.diploma/assets/138996194/87ed21b6-52dd-4434-81e7-72f6ab351823)
 
