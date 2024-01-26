@@ -158,7 +158,7 @@ public class WebTestCredit {
         dataForm.checkWrongFormat();
     }
 
-    @Test //ложно проходит текст у другого поля
+    @Test
     void emptyCVCCreditTest() {
         val mainPage = new MainPage();
         val dataForm = mainPage.selectBuyByCredit();

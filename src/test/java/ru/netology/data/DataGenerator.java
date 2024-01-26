@@ -32,7 +32,7 @@ public final class DataGenerator {
     private static final int MAX_THREE_NUM = 999;
     private static String cvc = Integer.toString(rnd(MIN_THREE_NUM, MAX_THREE_NUM));
     private static final int HUNDRED = 100;
-    private static int thisYear = (LocalDate.now().getYear()) % HUNDRED; // получаем последние цифры текущего года
+    private static int thisYear = (LocalDate.now().getYear()) % HUNDRED;
     private static String thisYearStr = Integer.toString(thisYear);
 
     private static final String lastYearStr = Integer.toString(thisYear - 1);
@@ -85,7 +85,7 @@ public final class DataGenerator {
         if (thisMonthInt - 1 == 0) {
             lastMonth = Integer.toString(12);
             thisYearStr = Integer.toString(thisYear - 1);
-        } // ложноположительно проходит, т.к. истекло по году, нужен более сложный тест с подменой текущей даты
+        }
 
         return new CardInformation(approvedCard, lastMonth, thisYearStr, faker.name().fullName(), cvc);
     }

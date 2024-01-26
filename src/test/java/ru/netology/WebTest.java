@@ -162,7 +162,7 @@ public class WebTest {
         dataForm.checkWrongFormat();
     }
 
-    @Test //ложно проходит текст у другого поля
+    @Test
     void emptyCVCTest() {
         val mainPage = new MainPage();
         val dataForm = mainPage.selectBuy();
